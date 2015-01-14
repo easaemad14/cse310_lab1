@@ -1,0 +1,258 @@
+
+CSE310 Assignment 1
+Due Date
+
+Friday, January 16th, 5:30pm, 2015
+
+Important: This is an individual assignment. Please do not collaborate.
+
+No late assignment will be accepted.
+
+Make sure that you write every line of your code. Using code written by someone else will be considered a violation of the academic integrity and will result in a report to the Dean's office.
+
+It must be submitted on-line.
+
+No late assignment will be accepted
+Minimal Submitted Files
+
+You are required to turn in the following source file(s) in C++:
+
+Assignment1.cpp (No need to be modified)
+LinkedList.h (More code need to be added)
+Objectives:
+
+    This is a review assignment. One needs to get ready to program in C++ and to know the basic data structures such as linked lists.
+
+ 
+
+Assignment Description:         
+
+ 
+
+      Write a C++ program that creates a linked list of Course data. Each entry in the list is to have a course number such as CSE10, a course title such as "Data Structures and Algorithms", and a pointer to the next course data. Then create a pointer (“head”) that points to the first element in the linked list (initially NULL). Also, you need to create the following methods in the LinkedList class (within LinkedList.h file):
+
+ 
+
+ 
+
+bool LinkedList::addElement(string newNumber, string newTitle, int index)
+
+-          This method attempts to add a new course data into the linked list using the parameter values - course number, course title, and an index. If the index is 0, then the new element is added as the first element of the linked list. It needs to create an object/data of the struct Course and add it to the linked in a correct location. If the index is less than 0 or beyond the number of elements in the linked list, or if there is no memory left to create a new object, the method should return false. The method should return true otherwise (the new course information was successfully added).
+
+bool LinkedList::removeElement(string someNumber, string someTitle)
+
+-          This method attempts to remove the course with the parameter course number value and course title and should return true if it can find and remove the course information. It should return false otherwise (the course with the number and title does not exists in the linked list).
+
+void LinkedList:printList( )
+
+-           It prints all entries in the linked list in the following format (print "The list is empty\n" if the linked list is empty):
+
+Course Number: CSE240, Course Title: Intro to Programming Languages
+Course Number: MAT243, Course Title: Discrete Math Structures
+Course Number: CSE310, Course Title: Data Structures and Algorithms
+Course Number: CSE220, Course Title: Programming for Computer Engineering
+
+ 
+
+LinkedList::~LinkedList( )
+
+            - This is a destructor of the LinkedList class. It should remove all elements in the linked list and perform garbage collection (free their memory). At the end, it should print: "The number of deleted courses is: XXX\n" where XXX is the number of deleted courses in the linked list.
+
+ 
+
+ 
+
+int main()
+
+            - The main function should start by displaying this menu in this format:
+
+ 
+
+            Choice\t\t Action\n
+
+            ------\t\t ------\n
+
+            A\t\t Add Course\n
+
+            D\t\t Display Courses\n
+
+            Q\t\t Quit\n
+
+            R\t\t Remove Course\n
+
+            ? \t\t Display Help\n\n
+
+ 
+
+ 
+
+ 
+
+Next, the following prompt should be displayed:
+
+ 
+
+What action would you like to perform?\n
+
+ 
+
+Read in the user input and execute the appropriate command. After the execution of each command, redisplay the prompt. Commands should be accepted in both lowercase and uppercase.
+
+The following is an example run (user input is in bold letter):
+
+
+Choice Action
+------ ------
+A Add Course
+D Display Courses
+Q Quit
+R Remove Course
+? Display Help
+
+What action would you like to perform?
+A
+Please enter some course information:
+Enter a course number:
+CSE310
+Enter a course title:
+Data Structures and Algorithms
+Enter an index to add:
+0
+The course CSE310 with title Data Structures and Algorithms added
+What action would you like to perform?
+D
+Course Number: CSE310, Course Title: Data Structures and Algorithms
+What action would you like to perform?
+A
+Please enter some course information:
+Enter a course number:
+CSE240
+Enter a course title:
+Intro to Programming Languages
+Enter an index to add:
+0
+The course CSE240 with title Intro to Programming Languages added
+What action would you like to perform?
+D
+Course Number: CSE240, Course Title: Intro to Programming Languages
+Course Number: CSE310, Course Title: Data Structures and Algorithms
+What action would you like to perform?
+A
+Please enter some course information:
+Enter a course number:
+CSE220
+Enter a course title:
+Programming for Computer Engineering
+Enter an index to add:
+2
+The course CSE220 with title Programming for Computer Engineering added
+What action would you like to perform?
+D
+Course Number: CSE240, Course Title: Intro to Programming Languages
+Course Number: CSE310, Course Title: Data Structures and Algorithms
+Course Number: CSE220, Course Title: Programming for Computer Engineering
+What action would you like to perform?
+A
+Please enter some course information:
+Enter a course number:
+MAT243
+Enter a course title:
+Discrete Math Structures
+Enter an index to add:
+1
+The course MAT243 with title Discrete Math Structures added
+What action would you like to perform?
+D
+Course Number: CSE240, Course Title: Intro to Programming Languages
+Course Number: MAT243, Course Title: Discrete Math Structures
+Course Number: CSE310, Course Title: Data Structures and Algorithms
+Course Number: CSE220, Course Title: Programming for Computer Engineering
+What action would you like to perform?
+Q
+
+ 
+
+ 
+
+Implementation/Documentation Requirements:
+
+    You need to implement this program using C++ and it has to read from the standard input (from a keyboard).
+
+    Your program needs to compile and execute in general.asu.edu.
+
+    You need to define addElement, removeElement, printList, the destructor methods of the LinkedList class
+
+    Your code should be well documented and commented.
+
+    You must use the provided data sets.
+
+    Also you are not allowed to use any predefined data structures (such as ones in the library, etc.) except arrays and strings, you need to build your own data structures and operations associated with them (such as add and remove).
+
+    Copying or using any code from other people's programs is considered to be cheating and will lead to a report to the Dean and you will be penalized. (Please review the syllabus)
+
+ 
+
+What to turn in:
+
+You must turn in C++ source code using the following submission site:
+
+https://courses.eas.asu.edu/cse310/
+
+First, you need to go to the Registration page to create your account using your ASU email address and your choice of a password. Then you login, and click on the Submission page. You need to select the correct assignment number. The types of files that you can submit are .cpp, or .h files. They have to compile and execute in general.asu.edu server. (You can access general.asu.edu by SSH (You can obtain it from myapps.asu.edu), and login using your ASU UserID and password.)
+
+For C++, the files need to compile and execute with the commands:
+
+g++ *.cpp
+
+./a.out
+
+You program should be well commented and documented, make sure the first few lines of your program contain your name, your ASU email address, and a description of each file. While you will not be graded on style technique ("i++" or "i = i + 1") or indenting by 4 spaces or tables, you should use indentation, good variable names, and clear, easy to read, and specific comments. (You will be graded on comments.)
+Input
+
+The following files are sample test cases that will be used as input for your program (Right-click and use "Save As"):
+
+Test Case #1
+Test Case #2
+Test Case #3
+Output
+
+The following files are sample test cases that will be used as input for your program (Right-click and use "Save As"):
+
+Test Case #1
+You can test your program as follows:
+
+For a C++ program, after compiling your files, one way is:
+
+./a.out < input1.txt
+
+or you can replace a.out with whichever your executable file is.
+Error Handling
+
+Your program will be tested with other input besides the ones above, thus is expected to be robust.
+
+Important Note: You may resubmit as many times as you like until the deadline, but we will only mark your last submission.
+
+Grading Criteria:
+
+____/ 3     Documentation (header including a description and comments for each function/method, each class, and each file)
+
+____/ 1     Indentation and Spacing (easy to read)
+
+____/ 2      the addElement method is defined correctly (and it produces the correct output)
+
+____/ 2      the removeElement method is defined correctly (and it produces the correct output)
+
+____/ 2      the printList function is method correctly (and it produces the correct output)
+
+____/ 2      the destructor ~LinkedList method is defined correctly (and it produces the correct output)
+
+____/ 18      Correct output for the test cases
+
+ 
+
+Total points: 30
+
+ 
+
+ 
+
