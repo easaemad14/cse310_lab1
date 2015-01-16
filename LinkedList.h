@@ -8,7 +8,6 @@
 #include <iostream> //to use cout
 #include <iomanip> //to format output
 #include <string> //to use strings
-#include <cstdlib> //For malloc
 
 using namespace std;
 
@@ -54,6 +53,7 @@ LinkedList::~LinkedList()
 		delete tmp;
 	}
 	if(this->head) delete head; //If nothing was ever added to the list
+	cout << "The number of deleted courses is: " << this->size << endl << endl;
 }
 
 //Description: Adds a Course as long as index is in bounds
@@ -61,47 +61,55 @@ bool LinkedList::addElement(string newNumber, string newTitle, int index)
  {
 	if(index < 0 || index > this->size) return false;
 
-	//Let's create the element to add, and declare any variables to be used
-	struct Course *newCourse;
-	newCourse = (struct Course *)malloc(sizeof(struct Course));
+	//We need to allocate a new Course and add
+	struct Course *newCourse, *tmp = this->head;
+	newCourse = new Course;
 	newCourse->number = newNumber;
 	newCourse->title = newTitle;
-	newCourse->next = NULL;
+	newCourse->next = NULL; //Just in case we are adding at head
 
-	int pos = 1; //We want the course that'll point to the new course
-	struct Course *tmp;
-
-	//Find the correct position to insert the new Course
-	//If the list is empty, then just make the newCourse the head
-	if(!this->size){
-		if(this->head) goto error1; //This should never happen!
+	if(!this->head){
+		if(size) goto size_error; //Sanity Check
+		if(index!=0) return false;
+		else{
+			this->head = newCourse;
+			this->size++;
+			return true;
+		}
+	}
+	else if(!index){ //Adding at head
+		newCourse->next = this->head;
 		this->head = newCourse;
 		this->size++;
 		return true;
 	}
-	//Otherwise, let's traverse to the node that we want
-	for(tmp=this->head; pos<index; pos++){
-		if(tmp->next) tmp = tmp->next;
-		else goto error2; //This should never happen either!
+	else{ //Adding anywhere but head
+		if(!size) goto size_error;
+
+		//We need to find the pre-position in the list to add (pos=1)
+		for(int pos=1; pos<index; pos++){
+			if(tmp->next) tmp = tmp->next;
+			else goto traverse_error;
+		}
+
+		//Add the course in the correct position and increment
+		newCourse->next = tmp->next; //Can be NULL
+		tmp->next = newCourse;
+		this->size++; //Don't forget to increment
+		return true;
 	}
 
-	//Now let's insert the new course
-	newCourse->next = tmp->next; //This can be NULL
-	tmp->next = newCourse;
-	this->size++;
-	return true;
-
-
-error1:
+//Some helpful fallthrough errors that will not cause termination of program
+size_error:
 	cout << "**************************************************************\n";
 	cout << "An error occured while trying to add an element!" << endl;
-	cout << "The size was zero, but head was pointing to something nonNULL!\n";
-	cout << "Bro, do you even code? Can you even logic?" << endl;
+	cout << "Your size element does not match the actual size of the list!\n";
+	cout << "Counting is hard!" << endl;
 	cout << "**************************************************************\n";
 	if(newCourse) delete newCourse;
 	return false;
 
-error2:
+traverse_error:
 	cout << "**************************************************************\n";
 	cout << "An error occured while trying to add an element!" << endl;
 	cout << "Attempted to traverse past end-of-list!" << endl;
@@ -112,32 +120,35 @@ error2:
  }
 
 //Description: Attempts to remove an element with the number and title passed
+//	My approach to this is setting a pointer to an element to delete, and
+//	checking to see if that pointer is nonNULL at the end of the function
+//	and taking the appropriate action.
 bool LinkedList::removeElement(string someNumber, string someTitle)
  {
 	struct Course *pre, *del = NULL;
 
-	//If there is only one element in the list
-	if(!this->head->next){
-		if(this->head->number.compare(someNumber) == 0 &&
-		this->head->title.compare(someTitle) == 0){
-			delete this->head;
-			this->head = NULL;
-			return true;
-		}
-		else return false;
+	if(this->head->number.compare(someNumber)==0 &&
+	   this->head->title.compare(someTitle)==0){ //Delete elem @ 0
+		del = this->head;
+		this->head = del->next;
 	}
-
-	//Let's find the element that we want to delete
-	for(pre=this->head; pre->next; pre = pre->next){
-		if(pre->next->number.compare(someNumber) == 0 &&
-		pre->next->title.compare(someTitle) == 0)
-			del = pre->next;
+	else{
+		//Let's find the element that we want to delete and set del
+		//Note that if there are two Courses with the same info, this will
+		//remove the last one in the list.
+		for(pre=this->head; pre->next; pre = pre->next)
+			if(pre->next->number.compare(someNumber) == 0 &&
+			   pre->next->title.compare(someTitle) == 0){
+				del = pre->next;
+				pre->next = del->next;
+		}
 	}
 
 	//If del points to something, then let's delete
 	if(del){
-		pre->next = del->next;
+		del->next = NULL; //Let's make sure we don't delete the whole list
 		delete del;
+		this->size--;
 		return true;
 	}
 	else return false;
