@@ -1,0 +1,23 @@
+A
+CSE310
+Data Structures and Algorithms
+0
+D
+A
+CSE240
+Intro to Programming Languages
+0
+D
+A
+CSE220
+Programming for Computer Engineering
+2
+D
+A
+MAT243
+Discrete Math Structures
+1
+D
+Q
+
+

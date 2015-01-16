@@ -1,75 +1,49 @@
-bool LinkedList::removeElement(string someNumber, string someTitle)
-
--          This method attempts to remove the course with the parameter course number value and course title and should return true if it can find and remove the course information. It should return false otherwise (the course with the number and title does not exists in the linked list).
-
-
-The following is an example run (user input is in bold letter):
-
-Choice Action
------- ------
-A Add Course
-D Display Courses
-Q Quit
-R Remove Course
-? Display Help
+Choice		Action
+------		------
+A		Add Course
+D		Display Courses
+Q		Quit
+R		Remove Course
+?		Display Help
 
 What action would you like to perform?
-A
 Please enter some course information:
 Enter a course number:
-CSE310
 Enter a course title:
-Data Structures and Algorithms
 Enter an index to add:
-0
 The course CSE310 with title Data Structures and Algorithms added
 What action would you like to perform?
-D
 Course Number: CSE310, Course Title: Data Structures and Algorithms
 What action would you like to perform?
-A
 Please enter some course information:
 Enter a course number:
-CSE240
 Enter a course title:
-Intro to Programming Languages
 Enter an index to add:
-0
 The course CSE240 with title Intro to Programming Languages added
 What action would you like to perform?
-D
 Course Number: CSE240, Course Title: Intro to Programming Languages
 Course Number: CSE310, Course Title: Data Structures and Algorithms
 What action would you like to perform?
-A
 Please enter some course information:
 Enter a course number:
-CSE220
 Enter a course title:
-Programming for Computer Engineering
 Enter an index to add:
-2
 The course CSE220 with title Programming for Computer Engineering added
 What action would you like to perform?
-D
 Course Number: CSE240, Course Title: Intro to Programming Languages
 Course Number: CSE310, Course Title: Data Structures and Algorithms
 Course Number: CSE220, Course Title: Programming for Computer Engineering
 What action would you like to perform?
-A
 Please enter some course information:
 Enter a course number:
-MAT243
 Enter a course title:
-Discrete Math Structures
 Enter an index to add:
-1
 The course MAT243 with title Discrete Math Structures added
 What action would you like to perform?
-D
 Course Number: CSE240, Course Title: Intro to Programming Languages
 Course Number: MAT243, Course Title: Discrete Math Structures
 Course Number: CSE310, Course Title: Data Structures and Algorithms
 Course Number: CSE220, Course Title: Programming for Computer Engineering
 What action would you like to perform?
-Q
+The number of deleted courses is: 4
+

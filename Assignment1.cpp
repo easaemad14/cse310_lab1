@@ -1,9 +1,13 @@
 // Assignment #1
-// Name:
-// ASU Email Address:
+// Name: Easa El Sirgany 1001361972
+// ASU Email Address: eelsirga@asu.edu
 // Description: This program displays a menu of choices to a user
 //        and performs the chosen task. It will keep asking a user to
 //        enter the next choice until the choice of 'Q' (Quit) is entered.
+//
+//	  NOTE: This file was written by the professor, and not changes (with the
+//	  exception of this concatination of the comment) were made to this file
+//	  by meself.
 
 #include <iostream>
 #include <string>
@@ -102,6 +106,3 @@ int main()
      cout << "R\t\tRemove Course\n";
      cout << "?\t\tDisplay Help\n\n";
   }
-
-
-
