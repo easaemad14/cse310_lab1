@@ -127,19 +127,23 @@ bool LinkedList::removeElement(string someNumber, string someTitle)
  {
 	struct Course *pre, *del = NULL;
 
+	if(!size) return false;
 	if(this->head->number.compare(someNumber)==0 &&
 	   this->head->title.compare(someTitle)==0){ //Delete elem @ 0
 		del = this->head;
 		this->head = del->next;
 	}
 	else{
+		if(!this->head->next) return false;
+
 		//Let's find the element that we want to delete and set del
 		//Note that if there are two Courses with the same info, this will
 		//remove the last one in the list.
 		for(pre=this->head; pre->next; pre = pre->next)
 			if(pre->next->number.compare(someNumber) == 0 &&
 			   pre->next->title.compare(someTitle) == 0){
-				del = pre->next;
+				if(!pre->next) return false;
+				else del = pre->next;
 				pre->next = del->next;
 		}
 	}
